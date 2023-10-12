@@ -9,7 +9,9 @@ const ContactForm = () => {
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
 
-  const addContactHandler = () => {
+  const addContactHandler = event => {
+    event.preventDefault();
+
     if (!name || !number) return;
 
     const newContact = {
@@ -24,7 +26,7 @@ const ContactForm = () => {
   };
 
   return (
-    <FormContainer>
+    <FormContainer onSubmit={addContactHandler}>
       <Input
         type="text"
         name="name"
@@ -39,7 +41,7 @@ const ContactForm = () => {
         onChange={e => setNumber(e.target.value)}
         placeholder="Phone number"
       />
-      <Button onClick={addContactHandler}>Add Contact</Button>
+      <Button type="submit">Add Contact</Button>
     </FormContainer>
   );
 };
